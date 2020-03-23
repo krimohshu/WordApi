@@ -2,14 +2,13 @@ package com.aryeet.initrestapi.service;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class GrepWordService {
+
+    Comparator<String> byLength = (e1, e2) -> e1.length() > e2.length() ? -1 : 1;
 
     /**
      * @param sentence
@@ -17,22 +16,37 @@ public class GrepWordService {
      * @author Krishan Shukla
      * @since 1.0
      */
-    public Map<String, Integer> getLongWord(String sentence) {
+    public Map<String, Integer> getLongestWord(String sentence) {
 
         Map<String, Integer> wordMap = new HashMap<>();
-        String[] currentWord = sentence.split(" ");
-        String longword = " ";
 
-        for (int i = 0; i < currentWord.length; i++) {
+        if (sentence != null) {
+            String[] currentWord = sentence.split(" ");
+            String longword = " ";
 
-            if (currentWord[i].length() >= longword.length()) {
+            for (int i = 0; i < currentWord.length; i++) {
 
-                longword = currentWord[i];
+                if (currentWord[i].length() >= longword.length()) {
+
+                    longword = currentWord[i];
+                }
             }
+            wordMap.put(longword, longword.length());
         }
 
-        System.out.println("Longest word is " + longword + " and Its length is  " + longword.length() + " char");
-        wordMap.put(longword, longword.length());
+        /*if (sentence != null) {
+            Set<String> setOfSmallestNumber = Arrays.asList(sentence.split(" "))
+                    .stream()
+                    .sorted((e2, e1) -> e1.length()  e2.length() ? -1 : 1)
+                    .collect(Collectors.toSet());
+
+            setOfSmallestNumber.stream().forEach(word -> {
+                wordMap.put(word, word.length());
+            });
+        }*/
+        else {
+            wordMap.put("Please provide the non-null Input", 0);
+        }
 
         return wordMap;
     }
@@ -43,21 +57,35 @@ public class GrepWordService {
      * @author Krishan Shukla
      * @since 1.0
      */
-    public Map<String, Integer> getShotestWord(String sentence) {
+    public Map<String, Integer> getShortestWord(String sentence) {
 
         Map<String, Integer> wordMap = new HashMap<>();
+        if(sentence !=null) {
+            Optional<String> shortest = Arrays.asList(sentence.split(" ")).stream()
+                    .sorted(byLength.reversed()).findFirst();
 
-        Set<String> setOfSmallestNumber = Arrays.asList(sentence.split(" "))
-                .stream()
-                .sorted((e2, e1) -> e1.length() > e2.length() ? -1 : 1)
-                .collect(Collectors.toSet());
+            wordMap.put(shortest.get(), shortest.get().length());
+        }
+        else{
+            wordMap.put("Please provide the non-null Input", 0);
+        }
 
-        setOfSmallestNumber.stream().forEach(word -> {
-            wordMap.put(word ,word.length());
-        });
+
+
+     /*   if (sentence != null) {
+            List<String> setOfSmallestNumber = Arrays.asList(sentence.split(" "))
+                    .stream()
+                    .sorted((e2, e1) -> e1.length() > e2.length() ? -1 : 1)
+                    .collect(Collectors.toList());
+
+            setOfSmallestNumber.stream().forEach(word -> {
+                wordMap.put(word, word.length());
+            });
+        } else {
+            wordMap.put("Please provide the non-null Input", 0);
+        }*/
 
         return wordMap;
     }
-
 
 }

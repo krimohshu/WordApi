@@ -15,38 +15,49 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class InitrestapiApplicationTests {
 
-	@LocalServerPort
-	private int port;
+    @LocalServerPort
+    private int port;
 
-	@InjectMocks
-	private GrepWordService grepWordService;
+    @InjectMocks
+    private GrepWordService grepWordService;
 
-	@Test
-	@DisplayName("A positive test to get longest word in sentence")
-	void getLongestWordWithLength() {
-		Map<String , Integer> actualFoundWord = grepWordService.getLongWord("The cow jumped over the moon.");
+    @Test
+    @DisplayName("A positive test to get longest word in sentence")
+    void getLongestWordWithLength() {
+        Map<String, Integer> actualFoundWord = grepWordService.getLongestWord("The cow jumped over the moon.");
 
-		actualFoundWord.entrySet().stream()
-				.forEach(word -> {
-					assertEquals(word.getKey(), "jumped");
-					assertEquals(word.getValue(), 6);
-				});
-	}
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertEquals("jumped", word.getKey());
+                    assertEquals(6, word.getValue());
+                });
+    }
 
-	@Test
-	@DisplayName("A positive test to get shortest word in sentence")
-	void getShortestWordWithLength() {
-		Map<String , Integer> actualFoundWord = grepWordService.getShotestWord("The cow jumped over moon.");
+    @Test
+    @DisplayName("A positive test to get shortest word in sentence")
+    void getShortestWordWithLength() {
+        Map<String, Integer> actualFoundWord = grepWordService.getShortestWord("The cow jumped over moon.");
 
-		actualFoundWord.entrySet().stream()
-				.forEach(word -> {
-					assertEquals(word.getKey(), "the");
-					assertEquals(word.getValue(), 6);
-				});
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertEquals("The", word.getKey());
+                    assertEquals(3, word.getValue());
+                });
+    }
 
-	}
+    @Test
+    @DisplayName("Verify null input for getLongestWord method")
+    void manageNullSentence() {
 
+        Map<String, Integer> actualFoundWord = grepWordService.getLongestWord(null);
 
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertEquals("Please provide the non-null Input", word.getKey());
+                    assertEquals(0, word.getValue());
+                });
+
+    }
 
 
 }
