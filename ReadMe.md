@@ -25,5 +25,8 @@ dryrun get api endpoint`/longword?sentence=x` without logic e.g.<br />
      { The cow jumped over moon. : The }
      
     Test-3: manageNullSentence() , Verify null input for getLongestWord method
-    { Please provide the non-null Input : 0 }
+    { Please provide the non-null Input : 0 }  
+    
+    Test-4: manageEmptySentence() , Verify Empty input for getLongestWord method
+    { Please provide the non-empty Input : 0 }
 

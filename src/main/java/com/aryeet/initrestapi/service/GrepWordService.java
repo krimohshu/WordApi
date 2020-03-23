@@ -19,8 +19,9 @@ public class GrepWordService {
     public Map<String, Integer> getLongestWord(String sentence) {
 
         Map<String, Integer> wordMap = new HashMap<>();
+        String errorMessage = "";
 
-        if (sentence != null) {
+        if (!(sentence == null || sentence.isEmpty())) {
 
             Optional<String> shortest = Arrays.asList(sentence.split(" ")).stream()
                     .sorted(byLength).findFirst();
@@ -28,7 +29,7 @@ public class GrepWordService {
             wordMap.put(shortest.get(), shortest.get().length());
 
         } else {
-            wordMap.put("Please provide the non-null Input", 0);
+            wordMap.put(errorMessageParser(sentence), 0);
         }
 
         return wordMap;
@@ -52,6 +53,16 @@ public class GrepWordService {
             wordMap.put("Please provide the non-null Input", 0);
         }
         return wordMap;
+    }
+
+    private String errorMessageParser(Object sentence) {
+
+        if (sentence == null) return "Please provide the non-null Input";
+        if (sentence.toString().equalsIgnoreCase("")) return "Please provide the non-Empty Input";
+
+
+        return "No suitable error code found";
+
     }
 
 }

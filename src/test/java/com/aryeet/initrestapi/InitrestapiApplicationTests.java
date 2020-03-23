@@ -59,5 +59,19 @@ class InitrestapiApplicationTests {
 
     }
 
+    @Test
+    @DisplayName("Verify Empty input for getLongestWord method")
+    void manageEmptySentence() {
+
+        Map<String, Integer> actualFoundWord = grepWordService.getLongestWord("");
+
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertEquals("Please provide the non-Empty Input", word.getKey());
+                    assertEquals(0, word.getValue());
+                });
+
+    }
+
 
 }
