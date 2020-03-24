@@ -1,5 +1,6 @@
 package com.aryeet.initrestapi.service;
 
+import exceptions.IncorrectInputException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -71,10 +72,13 @@ public class GrepWordService {
 
     private String errorMessageParser(Object sentence) {
 
-        if (sentence == null) return "Please provide the non-null Input";
-        if (sentence.toString().equalsIgnoreCase("")) return "Please provide the non-Empty Input";
-        if (sentence.toString().split(" ").length == 0) return "You have wrongly provided space-only input";
+        if (sentence == null) return new IncorrectInputException("Please provide the non-null Input").toString();
 
+        if (sentence.toString().equalsIgnoreCase(""))
+            return new IncorrectInputException("Please provide the non-Empty Input").toString();
+
+        if (sentence.toString().split(" ").length == 0)
+            return new IncorrectInputException("You have wrongly provided space-only input").toString();
 
         return "No suitable error code found";
 
