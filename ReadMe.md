@@ -1,4 +1,9 @@
 
+# Runing instruction 
+Test using springboottest using randomport `clean test`
+Run application on port:2303 `clean spring-boot:run` and hit following end point
+`http://localhost:2303/longword?sentence=The cow jumped over the moon.`
+
 # Solution 
 User/System can provide the "Sentence" and solution need to find the longest or the shortest word & its length from input
 ## Requirements

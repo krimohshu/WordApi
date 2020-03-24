@@ -26,10 +26,10 @@ public class GrepWordService {
             Integer lenghtOfWord = Arrays.asList(sentence.split(" ")).stream()
                     .sorted(byLength).findFirst().get().length();
 
-            Set<String> wordList = Arrays.asList(sentence.split(" ")).stream()
+            List<String> wordList = Arrays.asList(sentence.split(" ")).stream()
                     .sorted(byLength)
                     .filter(longestWordLength -> longestWordLength.length() == lenghtOfWord)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
 
             wordList.stream()
                     .forEach(word -> {

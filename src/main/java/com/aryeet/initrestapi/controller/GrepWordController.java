@@ -1,5 +1,6 @@
 package com.aryeet.initrestapi.controller;
 
+import com.aryeet.initrestapi.response.ResponseDTO;
 import com.aryeet.initrestapi.service.GrepWordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,13 @@ public class GrepWordController {
     @Autowired
     private GrepWordService grepWordService;
 
+    @Autowired
+    ResponseDTO responseDTO;
+
     @GetMapping("/longword")
     @ResponseBody
-    public Map<String, Integer> getLongWordProvidedInUrl(@RequestParam("sentence") String sentence) {
-        return grepWordService.getLongestWord(sentence);
+    public ResponseDTO getLongWordProvidedInUrl(@RequestParam("sentence") String sentence) {
+        return responseDTO.getResponseBody(grepWordService.getLongestWord(sentence));
     }
 
 }
