@@ -23,7 +23,8 @@ public class GrepWordService {
 
 
         if (!(sentence == null || sentence.isEmpty() || sentence.split(" ").length == 0)) {
-            String[] arrSentenceSplitBySpace = sentence.split(" ");
+           // String[] arrSentenceSplitBySpace = sentence.replaceAll("[^\\\\w\\\\s]", "").split(" ");
+            String[] arrSentenceSplitBySpace = sentence.replaceAll("[-+<>//.^:,]", "").split(" ");
 
             Integer lenghtOfWord = Arrays.asList(arrSentenceSplitBySpace).stream()
                     .sorted(byLength)

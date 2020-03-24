@@ -20,6 +20,7 @@ User/System can provide the "Sentence" and solution need to find the longest or 
 3. Case-sestivity will be define by user/system as parameter. By default, It will be case-senstive.<br /> 
 4. All Same length longest word will return by solution <br /> 
 5. Apart from " " , other charachter will be part of word. Exception is "." period chars.<br /> 
+6. Escape-Sequence will be not be treated as the literal as it pose security risk. Though  it should be handled on front-end layer instead of service layer <br />
 N.B. The above point are assumption. Due to time constraint, only tests in next section has been implemented <br /> 
 
 # Steps performed
@@ -56,6 +57,9 @@ dryrun get api endpoint`/longword?sentence=x` without logic e.g.<br />
     { The cow jumped over the jupiter. : 7}
     
     Test-9: otheLanguageWordInSentence , period is not counted in the word jupiter.
-    { इंगलैंड कोरोना से लड़ाई जीतेग。: 4}
+    { इंगलैंड कोरोना से लड़ाई जीतेग。: 7}
+    
+     Test-10: escapeSequenceInTheSentence , This ia XSS <alert>attacking site </alert>
+     { alert : 5}
     
 

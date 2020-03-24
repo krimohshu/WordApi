@@ -163,5 +163,19 @@ class InitrestapiApplicationTests {
 
     }
 
+    @Test
+    @DisplayName("This ia XSS <alert>attacking site </alert>")
+    void escapeSequenceInTheSentence() {
+
+        Map<String, Integer> actualFoundWord = grepWordService.getLongestWord("This ia XSS <alert>attacking site </alert>");
+
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertEquals("alert", word.getKey());
+                    assertEquals(7, word.getValue());
+                });
+
+    }
+
 
 }
