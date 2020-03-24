@@ -93,4 +93,32 @@ class InitrestapiApplicationTests {
 
     }
 
+    @Test
+    @DisplayName("Verify space only string (\"    \")")
+    void sendOnlySpaceInSentence() {
+        Map<String, Integer> actualFoundWord = grepWordService.getLongestWord("      ");
+
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertEquals("You have wrongly provided space-only input", word.getKey());
+                    assertEquals(0, word.getValue());
+                });
+
+    }
+
+    @Test
+    @DisplayName("Verify hypenated longest string")
+    void hypenatedLongedWordInSentence() {
+
+        Map<String, Integer> actualFoundWord = grepWordService.getLongestWord("the worst in-a-recession year.");
+
+
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertEquals("in-a-recession", word.getKey());
+                    assertEquals(14, word.getValue());
+                });
+
+    }
+
 }

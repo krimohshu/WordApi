@@ -21,9 +21,11 @@ public class GrepWordService {
         Map<String, Integer> wordMap = new HashMap<>();
         String errorMessage = "";
 
-        if (!(sentence == null || sentence.isEmpty())) {
 
-            Integer lenghtOfWord = Arrays.asList(sentence.split(" ")).stream()
+        if (!(sentence == null || sentence.isEmpty() || sentence.split(" ").length == 0)) {
+           String[] arrSentenceSplitBySpace = sentence.split(" ");
+
+            Integer lenghtOfWord = Arrays.asList(arrSentenceSplitBySpace).stream()
                     .sorted(byLength).findFirst().get().length();
 
             List<String> wordList = Arrays.asList(sentence.split(" ")).stream()
@@ -68,6 +70,7 @@ public class GrepWordService {
 
         if (sentence == null) return "Please provide the non-null Input";
         if (sentence.toString().equalsIgnoreCase("")) return "Please provide the non-Empty Input";
+        if (sentence.toString().split(" ").length == 0) return "You have wrongly provided space-only input";
 
 
         return "No suitable error code found";
