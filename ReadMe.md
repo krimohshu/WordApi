@@ -53,7 +53,7 @@ Created following TestCases
     { the worst in-a-recession year. : 14}
     
     Test-7: onlyhypenatedLongedWordInSentence() , Verify hypenated longest string
-    { the worst in-a-recession year. : 29}
+    { the-worst-in-a-recession-year. : 29}
     
     Test-8: periodCharNotCountedInWord , period is not counted in the word jupiter.
     { The cow jumped over the jupiter. : 7}
@@ -63,5 +63,12 @@ Created following TestCases
     
      Test-10: escapeSequenceInTheSentence , This ia XSS <alert>attacking site </alert>
      { alert : 5}
+
+# Result
+![Screenshot](TestResult.png)
+
+
+
+     
     
 

@@ -21,9 +21,8 @@ public class GrepWordService {
         Map<String, Integer> wordMap = new HashMap<>();
         String errorMessage = "";
 
-
         if (!(sentence == null || sentence.isEmpty() || sentence.split(" ").length == 0)) {
-           // String[] arrSentenceSplitBySpace = sentence.replaceAll("[^\\\\w\\\\s]", "").split(" ");
+
             String[] arrSentenceSplitBySpace = sentence.replaceAll("[-+<>//.^:,]", "").split(" ");
 
             Integer lenghtOfWord = Arrays.asList(arrSentenceSplitBySpace).stream()
