@@ -1,6 +1,6 @@
 
 # Runing instruction 
-Test using springboottest using randomport `clean test`<br />
+Test uses springboottest mockito and JUnit 5 to test business logic in service layer `clean test`<br />
 Run application on port:2303 `clean spring-boot:run` and hit following end point<br />
 `http://localhost:2303/longword?sentence=The cow jumped over the moon.`<br />
 
@@ -16,12 +16,13 @@ User/System can provide the "Sentence" and solution need to find the longest or 
      Some kind of Stream -Kafka, kinesis, other apis etc. <br />
      Database <br />
      ... <br />   
-2. User/System can send sentence in different language so solution need to compatible with char encoding <br /> 
-3. Case-sestivity will be define by user/system as parameter. By default, It will be case-senstive.<br /> 
-4. All Same length longest word will return by solution <br /> 
-5. Apart from " " , other charachter will be part of word. Exception is "." period chars.<br /> 
-6. Escape-Sequence will be not be treated as the literal as it pose security risk. Though  it should be handled on front-end layer instead of service layer <br />
-N.B. The above point are assumption. Due to time constraint, only tests in next section has been implemented <br /> 
+2. User/System can send sentence in different language so solution need to be compatible with char encoding <br /> 
+3. Case-sestivity should be defined by user/system as parameter. By default, It will be case-senstive in this solution.<br /> 
+4. All same length longest words will be returned by solution <br /> 
+5. Apart from " " , other charachter will not be part of word. Exception is "." period chars.<br /> 
+6. Escape-Sequence will be treated as the literal but removed from computation.These char can pose security risk. It should be handled on front-end layer instead of service layer. Solution will remove these char during computation <br />
+
+N.B. The above points are assumptions. Due to time constraint, I have implemeted few tests as depicts in next sections  <br /> 
 
 # Steps performed
 Initialize the project via spring starter https://start.spring.io/ <br />
