@@ -13,6 +13,8 @@ User/System can provide the "Sentence" and solution need to find the longest or 
 2. User/System can send sentence in different language so solution need to compatible with char encoding 
 
 3. Case-sestivity will be define by user/system as parameter. By default, It will be case-senstive.
+
+4. All Same length longest word will return by solution
 # Steps performed
 Initialize the project via spring starter https://start.spring.io/ <br />
 dryrun get api endpoint`/longword?sentence=x` without logic e.g.<br />
@@ -29,4 +31,9 @@ dryrun get api endpoint`/longword?sentence=x` without logic e.g.<br />
     
     Test-4: manageEmptySentence() , Verify Empty input for getLongestWord method
     { Please provide the non-empty Input : 0 }
+    
+    Test-5: multipleLargestWordsInSentence() , Two same length longest word should return both words
+        { The monkey and cow and jumped over the moon  : monkey, 6 ; jumped , 6}
+    
+    
 

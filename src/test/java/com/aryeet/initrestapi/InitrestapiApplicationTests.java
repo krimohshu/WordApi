@@ -1,6 +1,7 @@
 package com.aryeet.initrestapi;
 
 import com.aryeet.initrestapi.service.GrepWordService;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -9,7 +10,9 @@ import org.springframework.boot.web.server.LocalServerPort;
 
 import java.util.Map;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -73,5 +76,21 @@ class InitrestapiApplicationTests {
 
     }
 
+    @Test
+    @DisplayName("Two same length longest word should return both words")
+    void multipleLargestWordsInSentence() {
+
+        Map<String, Integer> actualFoundWord = grepWordService.getLongestWord("The monkey and cow and jumped over the moon");
+
+
+        assertTrue(actualFoundWord.keySet().contains("jumped"), "finding if jumped return by method");
+        assertTrue(actualFoundWord.keySet().contains("monkey"), "finding if monkey return by method");
+
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertThat(word.getValue(), Matchers.is(6));
+                });
+
+    }
 
 }

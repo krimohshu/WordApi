@@ -23,10 +23,19 @@ public class GrepWordService {
 
         if (!(sentence == null || sentence.isEmpty())) {
 
-            Optional<String> shortest = Arrays.asList(sentence.split(" ")).stream()
-                    .sorted(byLength).findFirst();
+            Integer lenghtOfWord = Arrays.asList(sentence.split(" ")).stream()
+                    .sorted(byLength).findFirst().get().length();
 
-            wordMap.put(shortest.get(), shortest.get().length());
+            Set<String> wordList = Arrays.asList(sentence.split(" ")).stream()
+                    .sorted(byLength)
+                    .filter(longestWordLength -> longestWordLength.length() == lenghtOfWord)
+                    .collect(Collectors.toSet());
+
+            wordList.stream()
+                    .forEach(word -> {
+                        wordMap.put(word, word.length());
+
+                    });
 
         } else {
             wordMap.put(errorMessageParser(sentence), 0);
