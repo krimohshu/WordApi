@@ -149,4 +149,19 @@ class InitrestapiApplicationTests {
 
     }
 
+    @Test
+    @DisplayName("period is not counted in the word jupiter.")
+    void otheLanguageWordInSentence() {
+
+        Map<String, Integer> actualFoundWord = grepWordService.getLongestWord("इंगलैंड कोरोना से लड़ाई जीतेगा");
+
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertEquals("इंगलैंड", word.getKey());
+                    assertEquals(7, word.getValue());
+                });
+
+    }
+
+
 }

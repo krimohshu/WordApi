@@ -6,13 +6,14 @@ Run application on port:2303 `clean spring-boot:run` and hit following end point
 
 # Solution 
 User/System can provide the "Sentence" and solution need to find the longest or the shortest word & its length from input
+
 ## Requirements
 1. Input can come from following sources<br />
      Parameter in URL <br />
      Command line argument <br />
      Json, xml <br />
      Excel , csv, flatfiles <br />
-     Some kind of Stream -Kafka, kinesis etc <br />
+     Some kind of Stream -Kafka, kinesis, other apis etc. <br />
      Database <br />
      ... <br />   
 2. User/System can send sentence in different language so solution need to compatible with char encoding <br /> 
@@ -20,10 +21,12 @@ User/System can provide the "Sentence" and solution need to find the longest or 
 4. All Same length longest word will return by solution <br /> 
 5. Apart from " " , other charachter will be part of word. Exception is "." period chars.<br /> 
 N.B. The above point are assumption. Due to time constraint, only tests in next section has been implemented <br /> 
+
 # Steps performed
 Initialize the project via spring starter https://start.spring.io/ <br />
 dryrun get api endpoint`/longword?sentence=x` without logic e.g.<br />
-`http://localhost:2303/longword?sentence=This is SpringBoot application`
+`http://localhost:2303/longword?sentence=This is SpringBoot application` <br />
+
 ## TDD Approach - Junit-5, Springboottest , Mockito 
     Test-1: getLongestWordWithLength() , A positive test to get longest word in sentence
     { The cow jumped over the moon. : jumped }
@@ -52,5 +55,7 @@ dryrun get api endpoint`/longword?sentence=x` without logic e.g.<br />
     Test-8: periodCharNotCountedInWord , period is not counted in the word jupiter.
     { The cow jumped over the jupiter. : 7}
     
+    Test-9: otheLanguageWordInSentence , period is not counted in the word jupiter.
+    { इंगलैंड कोरोना से लड़ाई जीतेग。: 4}
     
 
