@@ -150,7 +150,7 @@ class InitrestapiApplicationTests {
     }
 
     @Test
-    @DisplayName("period is not counted in the word jupiter.")
+    @DisplayName("Find word in other language")
     void otheLanguageWordInSentence() {
 
         Map<String, Integer> actualFoundWord = grepWordService.getLongestWord("इंगलैंड कोरोना से लड़ाई जीतेगा");

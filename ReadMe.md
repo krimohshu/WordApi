@@ -56,10 +56,10 @@ Created following TestCases
     Test-7: onlyhypenatedLongedWordInSentence() , Verify hypenated longest string
     { the-worst-in-a-recession-year. : 29}
     
-    Test-8: periodCharNotCountedInWord , period is not counted in the word jupiter.
+    Test-8: periodCharNotCountedInWord , Period is not counted in the word jupiter.
     { The cow jumped over the jupiter. : 7}
     
-    Test-9: otheLanguageWordInSentence , period is not counted in the word jupiter.
+    Test-9: otheLanguageWordInSentence , Find word in other language.
     { इंगलैंड कोरोना से लड़ाई जीतेग。: 7}
     
      Test-10: escapeSequenceInTheSentence , This ia XSS <alert>attacking site </alert>
