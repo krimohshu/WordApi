@@ -1,8 +1,8 @@
 
 # Runing instruction 
-Test using springboottest using randomport `clean test`
-Run application on port:2303 `clean spring-boot:run` and hit following end point
-`http://localhost:2303/longword?sentence=The cow jumped over the moon.`
+Test using springboottest using randomport `clean test`<br />
+Run application on port:2303 `clean spring-boot:run` and hit following end point<br />
+`http://localhost:2303/longword?sentence=The cow jumped over the moon.`<br />
 
 # Solution 
 User/System can provide the "Sentence" and solution need to find the longest or the shortest word & its length from input
@@ -27,6 +27,8 @@ N.B. The above point are assumption. Due to time constraint, only tests in next 
 Initialize the project via spring starter https://start.spring.io/ <br />
 dryrun get api endpoint`/longword?sentence=x` without logic e.g.<br />
 `http://localhost:2303/longword?sentence=This is SpringBoot application` <br />
+
+Created following TestCases
 
 ## TDD Approach - Junit-5, Springboottest , Mockito 
     Test-1: getLongestWordWithLength() , A positive test to get longest word in sentence
