@@ -121,4 +121,18 @@ class InitrestapiApplicationTests {
 
     }
 
+    @Test
+    @DisplayName("Verify hypenated longest string")
+    void onlyhypenatedLongedWordInSentence() {
+
+        Map<String, Integer> actualFoundWord = grepWordService.getLongestWord("the-worst-in-a-recession-year");
+
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertEquals("the-worst-in-a-recession-year", word.getKey());
+                    assertEquals(29, word.getValue());
+                });
+
+    }
+
 }
