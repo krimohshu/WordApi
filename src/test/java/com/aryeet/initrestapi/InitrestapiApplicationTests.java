@@ -135,4 +135,18 @@ class InitrestapiApplicationTests {
 
     }
 
+    @Test
+    @DisplayName("period is not counted in the word jupiter.")
+    void periodCharNotCountedInWord() {
+
+        Map<String, Integer> actualFoundWord = grepWordService.getLongestWord("The cow jumped over the jupiter.");
+
+        actualFoundWord.entrySet().stream()
+                .forEach(word -> {
+                    assertEquals("jupiter", word.getKey());
+                    assertEquals(7, word.getValue());
+                });
+
+    }
+
 }

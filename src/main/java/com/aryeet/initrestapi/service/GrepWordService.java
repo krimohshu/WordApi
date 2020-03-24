@@ -23,13 +23,16 @@ public class GrepWordService {
 
 
         if (!(sentence == null || sentence.isEmpty() || sentence.split(" ").length == 0)) {
-           String[] arrSentenceSplitBySpace = sentence.split(" ");
+            String[] arrSentenceSplitBySpace = sentence.split(" ");
 
             Integer lenghtOfWord = Arrays.asList(arrSentenceSplitBySpace).stream()
-                    .sorted(byLength).findFirst().get().length();
+                    .sorted(byLength)
+                    .map(x -> x.replace(".", ""))
+                    .findFirst().get().length();
 
             List<String> wordList = Arrays.asList(sentence.split(" ")).stream()
                     .sorted(byLength)
+                    .map(x -> x.replace(".", ""))
                     .filter(longestWordLength -> longestWordLength.length() == lenghtOfWord)
                     .collect(Collectors.toList());
 

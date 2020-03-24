@@ -17,8 +17,8 @@ User/System can provide the "Sentence" and solution need to find the longest or 
      ... <br />   
 2. User/System can send sentence in different language so solution need to compatible with char encoding <br /> 
 3. Case-sestivity will be define by user/system as parameter. By default, It will be case-senstive.<br /> 
-4. All Same length longest word will return by solution<br /> 
-
+4. All Same length longest word will return by solution <br /> 
+5. Apart from " " , other charachter will be part of word. Exception is "." period chars.<br /> 
 N.B. The above point are assumption. Due to time constraint, only tests in next section has been implemented <br /> 
 # Steps performed
 Initialize the project via spring starter https://start.spring.io/ <br />
@@ -44,10 +44,13 @@ dryrun get api endpoint`/longword?sentence=x` without logic e.g.<br />
     { You have wrongly provided space-only input: 0}
             
     Test-6: hypenatedLongedWordInSentence() , Verify hypenated longest string
-    { the worst in-a-recession year. : 0}
+    { the worst in-a-recession year. : 14}
     
     Test-7: onlyhypenatedLongedWordInSentence() , Verify hypenated longest string
-    { the worst in-a-recession year. : 0}
+    { the worst in-a-recession year. : 29}
+    
+    Test-8: periodCharNotCountedInWord , period is not counted in the word jupiter.
+    { The cow jumped over the jupiter. : 7}
     
     
 
